@@ -50,7 +50,8 @@ export const DepartmentButtons = ({ id, onDepartmentDelete }) => {
         console.log("api response", res);
         // console.log("res.data.success type:", typeof res.data.success, "value:", res.data.success);
         if (res.data.success) {
-          onDepartmentDelete(id);
+          onDepartmentDelete();
+          
         }
       } catch (error) {
         if (error.response && !error.response.data.success) {

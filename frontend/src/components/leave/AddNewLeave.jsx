@@ -2,15 +2,14 @@ import { useState } from "react";
 import { useAuth } from "../../../context/authContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AddNewLeave = () => {
-  const { user } = useAuth();
+  const {user}=useAuth();
   const [leave, setLeave] = useState({
-    userId: user._id,
+    userId:user._id,
   });
-
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLeave((prevState) => ({ ...prevState, [name]: value }));
@@ -19,13 +18,24 @@ export const AddNewLeave = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/leave/add", leave,{
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await axios.post(
+        "http://localhost:5000/api/leave/add",
+        leave,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       if (res.data.success) {
-        navigate("/employee-dashboard/leaves");
+        toast.success("Leave Succcessfully Added!!");
+        setLeave({
+          userId:user._id,
+          leaveType:"",
+          startDate:"",
+          endDate:"",
+          reason:"",
+        })
       }
     } catch (error) {
       console.log(error);

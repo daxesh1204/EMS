@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const EditDepartment = () => {
 
@@ -19,9 +20,10 @@ export const EditDepartment = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        // console.log("api response", res.data);
+        console.log("api response", res.data);
         // console.log("res.data.success type:", typeof res.data.success, "value:", res.data.success);
         if (res.data.success) {
+          toast.success("Department edited successfully!!");
           setDepartment(res.data.department);
         }
       } catch (error) {

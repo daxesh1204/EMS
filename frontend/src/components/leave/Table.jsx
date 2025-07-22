@@ -36,7 +36,7 @@ export const Table = () => {
         setFilteredLeaves(data);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       // if (error.response && !error.response.data.success) {
       //   console.log(error.response.data.message);
       // }

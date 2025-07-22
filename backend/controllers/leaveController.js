@@ -4,6 +4,8 @@ import Employee from "../models/employee.model.js";
 const addLeave = async (req, res) => {
   try {
     const { userId, leaveType, startDate, endDate, reason } = req.body;
+    console.log("userId",userId);
+    
     const employee = await Employee.findOne({ userId });
     // console.log(employee);
     const newLeave = new Leave({
@@ -28,7 +30,7 @@ const getLeaves = async (req, res) => {
   try {
     const { id } = req.params;
     let leaves = await Leave.find({ employeeId: id });
-    if (!leaves) {
+    if (!leaves || leaves.length === 0 ) {
       const employee = await Employee.findOne({ userId: id });
       leaves = await Leave.find({ employeeId: employee._id });
     }

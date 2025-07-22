@@ -4,6 +4,8 @@ import {
   FaCalendarAlt,
   FaCogs,
   FaMoneyBillWave,
+  FaRegCalendarAlt,
+  FaRegFileAlt,
   FaTachometerAlt,
   FaUsers,
 } from "react-icons/fa";
@@ -62,6 +64,31 @@ export const AdminSideBar = () => {
           <span>Salary</span>
         </NavLink>
 
+         <NavLink
+          to={`/admin-dashboard/attendance`}
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : ""
+            } flex items-center space-x-4 py-2.5 px-4 rounded`
+          }
+        >
+
+          <FaRegCalendarAlt/>
+          <span>Attendance</span>
+        </NavLink>
+
+         <NavLink
+          to={`/admin-dashboard/attendance-report`}
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : ""
+            } flex items-center space-x-4 py-2.5 px-4 rounded`
+          }
+        >
+
+          <FaRegFileAlt/>
+          <span>Attendance Report</span>
+        </NavLink>
         <NavLink
           to="/admin-dashboard/leaves"
           className={({ isActive }) =>

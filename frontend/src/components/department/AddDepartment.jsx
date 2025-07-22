@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AddDepartment = () => {
   const [department, setDepartment] = useState({
@@ -27,6 +28,7 @@ export const AddDepartment = () => {
       });
       console.log("API Response:", res.data);
       if (res.data.success) {
+        toast.success("Department added successfully!!")
         navigate("/admin-dashboard/departments");
       }
     } catch (error) {
